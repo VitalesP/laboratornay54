@@ -29,13 +29,15 @@ public class EventService {
 
     public boolean subscribeToEvent(String event_id, String email) {
         if(eventRepository.existsById(Long.valueOf(event_id))
-                && subscriptionToEventRepository.existsByEmail(email)){
+                && subscriptionToEventRepository.existsByEmail(email)
+                && subscriptionToEventRepository.findById(Long.valueOf(event_id)).get().getLocalDate()
+                    .isBefore(LocalDate.now())){
             subscriptionToEventRepository.save(SubscriptionToEvent.builder()
                     .email(email)
                     .event(eventRepository.findById(Long.valueOf(event_id)).get())
                     .localDate(LocalDate.now())
                     .build());
-            return true;
+                return true;
         } else {
             return false;
         }

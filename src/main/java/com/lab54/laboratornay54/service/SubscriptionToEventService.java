@@ -7,6 +7,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class SubscriptionToEventService {
     private final SubscriptionToEventRepository subscriptionToEventRepository;
@@ -32,5 +34,14 @@ public class SubscriptionToEventService {
         subscriptionToEventRepository.deleteById(Long.valueOf(subscriptionId));
         return true;
 
+    }
+
+    public boolean existEmail(String email) {
+        subscriptionToEventRepository.existsByEmail(email);
+        return true;
+    }
+
+    public List<SubscriptionToEvent> findByEmail(String email) {
+        return subscriptionToEventRepository.findByEmail(email);
     }
 }

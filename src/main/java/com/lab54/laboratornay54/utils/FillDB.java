@@ -21,8 +21,9 @@ public class FillDB {
     CommandLineRunner initDatabase(EventRepository eventRepository
             , SubscriptionToEventRepository subscriptionToEventRepository) {
         return (args) -> {
-            eventRepository.deleteAll();
             subscriptionToEventRepository.deleteAll();
+            eventRepository.deleteAll();
+
             eventRepository.saveAll(getEvents());
             List<SubscriptionToEvent> subscriptionToEvents = getSubscriptionToEvent(eventRepository);
             subscriptionToEventRepository.saveAll(subscriptionToEvents);

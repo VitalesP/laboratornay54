@@ -26,9 +26,9 @@ public class EventController {
         return eventService.getEvent(pageable);
     }
 
-    @PostMapping("/{event_id}/{email}")
-    public ResponseEntity<AnswerDTO> subscribeToEvent(@PathVariable String event_id, @PathVariable String email) {
-        if (eventService.subscribeToEvent(event_id, email)) {
+    @PostMapping
+    public ResponseEntity<AnswerDTO> subscribeToEvent(@RequestParam String event_id, @RequestParam String email) {
+         if (eventService.subscribeToEvent(event_id, email)) {
             return ResponseEntity.ok().body(AnswerDTO.builder()
                     .subscriptionToEventId(subscriptionToEventService.findById(event_id).getId().toString())
                     .textAnswer("Подписка успешно офомлена")
