@@ -3,6 +3,9 @@ package com.lab54.laboratornay54.repository;
 import com.lab54.laboratornay54.model.SubscriptionToEvent;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface SubscriptionToEventRepository extends JpaRepository<SubscriptionToEvent, Long> {
+import java.util.Optional;
 
+public interface SubscriptionToEventRepository extends JpaRepository<SubscriptionToEvent, Long> {
+    boolean existsByEmail(String email);
+    Optional<SubscriptionToEvent> findById(Long id);
 }

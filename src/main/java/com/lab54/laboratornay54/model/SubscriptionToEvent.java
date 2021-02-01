@@ -21,9 +21,9 @@ public class SubscriptionToEvent {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "event_id")
-    private List<Event> event;
+    private Event event;
 
     private String email;
 

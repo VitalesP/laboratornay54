@@ -23,7 +23,7 @@ public class SubscriptionToEventDto {// extends SubscriptionToEvent {
     }
 
     private Long id;
-    private List<Event> event;
+    private Event event;
     private String email;
     private LocalDate localDate;
 
